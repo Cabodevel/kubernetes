@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-world-job
+spec:
+  #Number of times a job runs in parallel
+  parallelism: 5
+  #Number of times a job runs one after another (not parallel)
+  # completions: 10
+  #Max time for job run
+  activeDeadlineSeconds: 60
+  #removes pods after completed in 30s
+  ttlSecondsAfterFinished: 30
+  # max number of retries
+  backoffLimit: 3 
+  template:
+    metadata:
+      name: hello-world-job
+    spec:
+    # restartpolicy Never/OnFailure
+      restartPolicy: OnFailure 
+      containers:
+      - name: hello-world-container
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: ["echo 'Hello world'"]

@@ -1,0 +1,38 @@
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: print-date
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: print-date
+            image: node:18-alpine
+            imagePullPolicy: IfNotPresent
+            args:
+            - -e
+            - "console.log(new Date().toString());"
+          restartPolicy: OnFailure
+
+
+# apiVersion: batch/v1
+# kind: CronJob
+# metadata:
+#   name: hello-world-cronjob
+# spec:
+#   schedule: "1 * * * *"
+#   jobTemplate:
+#     spec:
+#       template:
+#         spec:
+#           containers:
+#             - name: hello-world-container
+#               image: busybox
+#               command: ["/bin/sh", "-c"]
+#               args: ["echo 'Hello world'"]
+#           ttlSecondsAfterFinished: 30     
+#           restartPolicy: OnFailure 
