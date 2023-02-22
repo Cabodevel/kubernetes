@@ -1,0 +1,2 @@
+#hostpath attach volume to worker (this is an anti pattern)
+#hostpath tightly couple worker node and pods
