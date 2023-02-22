@@ -1,2 +1,25 @@
 #hostpath attach volume to worker (this is an anti pattern)
 #hostpath tightly couple worker node and pods
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-host-path
+spec: 
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 8081
+      volumeMounts:
+      - mountPath: /var/config
+        name: my-host-path-volume
+    - name: busybox-container
+      image: busybox:latest
+      ports:
+        - containerPort: 8082
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do sleep 30; done;"] # Prevents busybox from exiting after completion
+  volumes:
+  - name: my-host-path-volume
+    hostPath:
+      path: /tmp # The path on the worker node.
