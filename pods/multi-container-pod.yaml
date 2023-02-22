@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-busybox
+spec:
+  initContainers:
+  - name: my-init-container
+    image: busybox:latest
+    command: ["sleep", "15"]
+  containers:
+   - name: nginx-container
+     image: nginx:latest
+     ports:
+      - containerPort: 8080
+   - name: busybox-container
+     image: busybox:latest
+     ports:
+      - containerPort: 8081
+     command: ["sleep"] # Corresponds to the ENTRYPOINT
+     args: ["60"] # Corresponds to CMD

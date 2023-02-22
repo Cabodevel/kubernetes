@@ -9,7 +9,11 @@
     kubectl get pods/nginx-pod -o yaml > nginx-bck.yaml
 -Get by label:
  kubectl get pods --label "name=value"
+
 -Show labels --show-labels
+
+-Get with filter
+kubectl get pod/nginx-pod -o jsonpath="{.items[*].spec.containers[*].name}"
 
 # 2 OBJECT DESCRIPTION kubectl describe {object-kind} {object-name}
 
@@ -35,8 +39,13 @@
 
 # 7 MANAGE LOGS kubectl logs [-f] [-p] (POD | TYPE/NAME) [-c CONTAINER]
 
-     kubectl logs pod/hello-world-job-lgzkf
+    -kubectl logs pod/hello-world-job-lgzkf
+     
+    - Last two hours from specific pod container
+      -  kubectl logs --since=2h Pods/multi-container-Pods --container nginx-container
+    - Tail log lines
+      - kubectl logs --tail=30 Pods/multi-container-Pods --container nginx-container
 
 # 8 DELETE A JOB kubectl delete jobs hello-world-job 
-    
+
     It deletes a job and created pods. Add --cascade=false if you want to keep pods
