@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-map-pod
+spec:
+  containers:
+   - name: config-map-nginx
+     image: nginx:latest
+     ports:
+       - containerPort: 8080
+     env:
+       - name: COLOR #Any other name works here.
+         valueFrom:
+           configMapKeyRef:
+             name: configmap1
+             key: color

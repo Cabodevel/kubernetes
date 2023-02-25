@@ -49,3 +49,9 @@ kubectl get pod/nginx-pod -o jsonpath="{.items[*].spec.containers[*].name}"
 # 8 DELETE A JOB kubectl delete jobs hello-world-job 
 
     It deletes a job and created pods. Add --cascade=false if you want to keep pods
+
+# 9 Create secret from file secret kubectl create secret generic mypassword --from-file=.\password.txt
+
+# 999 Extras
+
+    -Get container env vars  kubectl exec pods/config-map-pod -- env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin
