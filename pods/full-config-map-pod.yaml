@@ -6,6 +6,13 @@ spec:
   containers:
    - name: full-configmap-pod
      image: nginx:latest
+     resources:
+      requests:
+        memory: "512Mi"
+        cpu: "250m"
+      limits:
+        memory: "1Gi"
+        cpu: "500m"
      envFrom:
        - configMapRef:
            name: configmap1

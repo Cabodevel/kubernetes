@@ -52,6 +52,8 @@ kubectl get pod/nginx-pod -o jsonpath="{.items[*].spec.containers[*].name}"
 
 # 9 Create secret from file secret kubectl create secret generic mypassword --from-file=.\password.txt
 
+# 10 Switch namespace: kubectl config set-context $(kubectl config current-context) -- namespace=another-ns
+
 # 999 Extras
 
     -Get container env vars  kubectl exec pods/config-map-pod -- env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin
