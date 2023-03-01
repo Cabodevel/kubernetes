@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvc-pod 
+spec:
+  containers:
+  - image: nginx
+    resources:
+      limits:
+        cpu: 700Mi
+        memory: 1Gi
+    name: nginx
+    volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypersistentvolume
+  volumes:
+    - name: mypersistentvolume
+      persistentVolumeClaim:
+        claimName: my-pvc

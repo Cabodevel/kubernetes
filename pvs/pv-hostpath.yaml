@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-hostpath
+  labels:
+    type: pv-hostpath
+    env: prod
+spec:
+  volumeMode: Filesystem
+  hostPath: 
+   path: "/Users/me/test"
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 500Mi
+    

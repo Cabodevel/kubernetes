@@ -5,7 +5,8 @@ metadata:
   annotations:
     tier: webserver
   labels:
-    environment: prod
+    app: nginx
+    environment: test
     tier: frontend
 spec:
   containers:

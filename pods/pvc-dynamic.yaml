@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-dynamic-storage  
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    volumeMounts:
+      - mountPath: "/var/www/html"
+        name: mypersistentvolume
+  volumes:
+      - name: mypersistentvolume
+        persistentVolumeClaim:
+          claimName: my-dynamic-hostpath-pvc  
