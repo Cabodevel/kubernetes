@@ -8,5 +8,5 @@ spec:
     app: whoami
   ports:
   - nodePort: 30001 #30000 - 32767 range on default install
-    port: 80 #servide nodePort can be any port in accepted ports range 0-65535 
+    port: 80 #servide nodePort can be any port in accepted ports range 0-65535
     targetPort: 80 #pod target port

@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: nginx-clusterip
 spec:
+# clusterIp: None for headless service without load balancing  adn pre allocated clusterip
   type: ClusterIP # Indicates that the service is a ClusterIP
   ports:
   - port: 80 # The port exposed by the service

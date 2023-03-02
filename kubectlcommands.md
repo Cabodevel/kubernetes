@@ -50,10 +50,30 @@ kubectl get pod/nginx-pod -o jsonpath="{.items[*].spec.containers[*].name}"
 
     It deletes a job and created pods. Add --cascade=false if you want to keep pods
 
-# 9 Create secret from file secret kubectl create secret generic mypassword --from-file=.\password.txt
+# 9 Create secret from file secret 
 
-# 10 Switch namespace: kubectl config set-context $(kubectl config current-context) -- namespace=another-ns
+    -kubectl create secret generic mypassword --from-file=.\password.txt
+
+# 10 Switch namespace:
+
+    kubectl config set-context $(kubectl config current-context) -- namespace=another-ns
+
+# 11 Deployments
+
+    -Get deployment history 
+        kubectl rollout history deploy <deploy.name>
+
+    -Undo deploy
+        to previous: kubectl rollout undo deploy <deploy.name>
+        to specific revision: kubectl rollout undo deploy <deploy.name> --to-revision=2
+
+    -Pause deploy
+        kubectl rollout pause deploy <deploy.name>
+    -Resume deploy 
+        kubectl rollout resume deploy <deploy.name>
 
 # 999 Extras
 
     -Get container env vars  kubectl exec pods/config-map-pod -- env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin
+
+    
